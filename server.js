@@ -1,5 +1,5 @@
 const express = require("express");
-const colors = require("colors");
+const path = require("path");
 const errorHandler = require("./middleware/error");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
@@ -25,10 +25,12 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use(errorHandler);
 
-const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
+const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
+  console.log(`Error: ${err.message}`);
 
   //close server
   server.close(() => process.exit(1)); // 1 is exit with failure
