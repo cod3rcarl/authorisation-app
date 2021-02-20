@@ -2,13 +2,14 @@ const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const crypto = require("crypto");
 
-const User = require("../models/auth.model"); //
+const User = require("../models/auth.model");
 
 // @description Get all users
 // @route GET /api/v1/users
 // @access Private/Admin
 
 exports.getUsers = asyncHandler(async (req, res, next) => {
+  console.log(res);
   res.status(200).json(res.advancedResults);
 });
 
@@ -17,8 +18,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 // @access Private/Admin
 
 exports.getUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.headers._id);
-  console.log(user);
+  const user = await User.findById(req.params.id);
   res.status(200).json({ user: user });
 });
 
@@ -27,7 +27,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 // @access Private/Admin
 
 exports.updateUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findByIdAndUpdate(req.headers._id, req.body, {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
@@ -39,7 +39,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 // @access Private/Admin
 
 exports.deleteUser = asyncHandler(async (req, res, next) => {
-  await User.findByIdAndDelete(req.headers._id);
+  await User.findByIdAndDelete(req.params.id);
   res.status(200).json({
     success: true,
     message: "Account deleted",
