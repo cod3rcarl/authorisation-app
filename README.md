@@ -31,22 +31,33 @@ https://github.com/cod3rcarl/authorisation-app.git
 
 
 MONGO_DB_CONNECTION=
+
 CLIENT_URL=
+
 JWT_RESET_PASSWORD=
+
 JWT_ACCOUNT_ACTIVATION=
+
 JWT_SECRET = 
+
 JWT_EXPIRE=
+
 JWT_COOKIE_EXPIRE=
 
 MAIL_KEY=
+
 FROM_EMAIL=
+
 FROM_NAME=
 
 GOOGLE_CLIENT=
 
 SMTP_HOST=
+
 SMTP_PORT=
+
 SMTP_EMAIL=
+
 SMTP_PASSWORD=
 
 4. Start the application
